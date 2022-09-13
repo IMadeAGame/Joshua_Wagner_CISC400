@@ -1,0 +1,1 @@
+When the Canvas stops being cleared, the point of the recent click is dranw, but the background disappears as does the other points.
