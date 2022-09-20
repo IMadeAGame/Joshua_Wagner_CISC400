@@ -1,0 +1,15 @@
+1 <script type="text/javascript"> -- This line specifies that the HTML code will be executing javascript code.
+2
+3 var canvas = document.getElementById(’webgl’); -- This line is retrieving the <canvas> tag from the HTML code so it can be used in the javascript code.
+4
+5 var gl = getWebGLContext(canvas); -- This line gets what rendering the WebGL will do.
+6 if (!gl) { -- This line checks to see if the code did not get the WebGL rendering.
+7 console.log(’Failed to get the rendering context for WebGL ’); -- This line of code prints to the console that the Rendering for WebGL failed so that the porgrammer can debug easier.
+8 return; -- This line ends the code to prevent errors down the road.
+9 }
+10
+11 if (! initShaders(gl, VSHADER_SOURCE , FSHADER_SOURCE)) { -- This line of code makes sure the shaders can be intialized with the given rendering context, Vertex Shader, and Fragment Shader.
+12 console.log(’Failed to intialize shaders.’); -- This line of code prints to the console that the intialization of the shaders failed so that the porgrammer can debug easier.
+13 return; -- This line ends the code to prevent errors down the road.
+14 }
+15 </script > --This line closes the javascript code chunk so that HTML knows when to stop executing javascript.

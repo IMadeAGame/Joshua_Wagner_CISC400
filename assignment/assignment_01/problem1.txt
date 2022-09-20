@@ -1,0 +1,8 @@
+Pixel: A square on a display that can make up objects/images.
+Frame Buffer: The positions of pixels that make up an image that is stored in memory.
+Aliasing: A display that has two states for pixels, on or off, and as a result creates a "jagged" image or rougher edges around an object.
+Antialiasing: The process of removing or smoothing "jagged" edges from an image.
+Bit Map: An image that is 1 bit or can only display 2 colors, usually black and white
+Pixel Map: An image that is 2 or more bits and can display more than 2 colors.
+Resolution: Amount of pixels that is displayed either on a display or in an image and is measured by Horizontal Pixels and Vertical Pixels.
+Bit Depth: Number of bits in each pixel of an image.

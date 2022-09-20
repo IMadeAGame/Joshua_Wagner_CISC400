@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Date/Time</title>
+  </head>
+
+  <body>
+    <p id="DisplayDate"></p>
+        <script>
+            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            var days = days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            setInterval(UpdateTime, 1000);
+            
+            function UpdateTime() {
+                var date = new Date();
+                
+                var time = days[date.getDay()] + ", " + date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear() + " — " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+                document.getElementById("DisplayDate").innerHTML = time;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2 @@
+Vertex Shaders deal with traits of an object such as position and size, but Fragment Shaders only deal with per-fragment processing such as lighting and color.
+Vertex Shaders deals with a shape's placement on a 3D Coordinate Frame and Fragment Shaders deal with the renderings of a shape.
