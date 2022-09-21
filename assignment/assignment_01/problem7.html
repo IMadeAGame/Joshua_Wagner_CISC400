@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Diagonal Matrix</title>
+  </head>
+
+  <body>
+    <p>Enter matrix as shown: [[1, 0, 0], [0, 2, 0], [0, 0, 3]]</p>
+    <input type="text" id = "matrix" oninput="UpdateMatrix()">
+    <p id="DisplayAnswer"></p>
+    <script>
+        function UpdateMatrix() {
+            var matrixRaw = document.getElementById('matrix').value;
+            var matrix = [];
+            var insideMatrix = [];
+            var currnum = "";
+
+            for (let i = 0; i < matrixRaw.length; i++)
+            {
+                if (!isNaN(matrixRaw[i]) && matrixRaw[i] != " ")
+                {
+                    currnum += matrixRaw[i];
+                }
+                else if (matrixRaw[i] == "," && currnum != "")
+                {
+                    insideMatrix.push(Number(currnum));
+                    currnum = "";
+                }
+                else if (matrixRaw[i] == "]" && insideMatrix.length > 0)
+                {
+                    if (currnum != "")
+                    {
+                        insideMatrix.push(Number(currnum));
+                        currnum = "";
+                    }
+                    matrix.push(insideMatrix);
+                    insideMatrix = [];
+                }
+            }
+
+            for (let i = 0; i < matrix.length; i++) {
+                if (matrix[i].length == matrix.length)
+                {
+                    for (let k = 0; k < matrix[i].length; k++)
+                    {
+                        if ((k == i && matrix[i][k] == 0) || (k != i && matrix[i][k] != 0))
+                        {
+                            document.getElementById("DisplayAnswer").innerHTML = "This is not a diagonal matrix";
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    document.getElementById("DisplayAnswer").innerHTML = "This is not a diagonal matrix";
+                    return;
+                }
+            }
+            document.getElementById("DisplayAnswer").innerHTML = "This is a diagonal matrix";
+        }
+    </script>
+    </body>
+</html>

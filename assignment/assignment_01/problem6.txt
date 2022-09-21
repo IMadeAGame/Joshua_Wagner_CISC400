@@ -1,0 +1,4 @@
+First, find the radius of the first x and y values and using the formula radius = sqrt(x^2 + y^2)
+Next, go to the second x and y values and use the equation above to find the radius
+Compare the two radius and if they are the same, keep going through the loop, if they are not the same, return false
+Repeat these steps until all radius are confirmed to be equal

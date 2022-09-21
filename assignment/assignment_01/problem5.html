@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Area of Circle</title>
+  </head>
+
+  <body>
+    <input type="text" id = "radius" oninput="UpdateRadius()">
+    <p id="DisplayRadius"></p>
+    <script>
+        function UpdateRadius() {
+            var radius = document.getElementById('radius').value
+
+            if(typeof Number(radius) == "number" && radius >= 0)
+            {
+                document.getElementById("DisplayRadius").innerHTML = Math.PI * Math.pow(radius,2);
+            }
+        }
+    </script>
+    </body>
+</html>
