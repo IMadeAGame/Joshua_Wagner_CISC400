@@ -50,6 +50,7 @@ function main() {
   var radius = 0.5;
   for(var i = 0; i < len; i++) {
     rad = i * (Math.PI/180);
+    // Had some help from https://webglfundamentals.org/webgl/lessons/webgl-drawing-without-data.html
     x = Math.sin(rad) * radius;
     y = Math.cos(rad) * radius;
 
