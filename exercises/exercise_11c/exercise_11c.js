@@ -4,10 +4,7 @@ var VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' +
   'uniform float Size;\n' +
   'void main() {\n' +
-  '  gl_Position = a_Position;\n' +
-  '  gl_Position.x = gl_Position.x * Size;\n' +
-  '  gl_Position.y = gl_Position.y * Size;\n' +
-  '  gl_Position.z = 0.0;\n' +
+  '  gl_Position = a_Position * Size;\n' +
   '  gl_Position.w = 1.0;\n' +
   '}\n';
 
