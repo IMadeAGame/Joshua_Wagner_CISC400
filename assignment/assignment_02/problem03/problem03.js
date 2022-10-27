@@ -99,7 +99,7 @@ function initVertexBuffers(gl) {
 
 function draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix) {
   // Set the rotation matrix
-  modelMatrix.setRotate(currentAngle, 0, 0, 1); // Rotation angle, rotation axis (0, 0, 1)
+  modelMatrix.setRotate(currentAngle, 0, 1, 0); // Rotation angle, rotation axis (0, 0, 1)
  
   // Pass the rotation matrix to the vertex shader
   gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
