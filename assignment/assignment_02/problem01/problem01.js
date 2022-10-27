@@ -16,6 +16,7 @@ var TRANSLATE_STEP = .05;
 var angle = 180;
 var prevY;
 var counter = 1;
+var dir = 1;
 
 function main() {
   // Retrieve <canvas> element
@@ -48,7 +49,9 @@ function main() {
   var modelMatrix = new Matrix4();
   var u_ModelMatrix = gl.getUniformLocation(gl.program, 'u_xformMatrix');
   var tick = function() {
-    transX,transY = animate(transY);  // Update the rotation angle
+    anim = animate(transY); // Update the rotation angle
+    transX = anim[0];
+    transY = anim[1];
     draw(gl, n, transX, transY-prevY, modelMatrix, u_ModelMatrix);   // Draw the triangle
     requestAnimationFrame(tick, canvas); // Request that the browser calls tick
   };
@@ -63,22 +66,22 @@ function animate(transY) {
     var elapsed = now - g_last;
     prevY = transY;
     g_last = now;
-    angle += ((TRANSLATE_STEP * elapsed));
+    angle += (TRANSLATE_STEP * elapsed) * dir;
     angle %= 360;
     console.log(angle);
     // Update the current rotation angle (adjusted by the elapsed time)
-    var newtransy = Math.sin(( Math.PI/180 ) * angle)
-    var newtransx = (Math.PI/180)
-    return newtransx, newtransy;
+    var newtransy = Math.sin(( Math.PI/180 ) * angle);
+    var newtransx = (Math.PI/180) * TRANSLATE_STEP * dir;
+    return [newtransx, newtransy];
 }
 
 function initVertexBuffers(gl) {
   var len = 360;
-  var radius = 0.1;
+  var radius = 0.05;
   var vertices = new Float32Array(720);
   for(var i = 0; i < len; i+=2) {
     rad = i * (Math.PI/180);
-    x = Math.sin(rad) * radius;
+    x = Math.sin(rad) * radius/2;
     y = Math.cos(rad) * radius;
     vertices[i] = x;
     vertices[i + 1] = y;
@@ -115,16 +118,17 @@ function initVertexBuffers(gl) {
 function draw(gl, n, transX, transY, modelMatrix, u_xformMatrix) {
   console.log(transX + ", " + transY);
   // Set the translate matrix
-  if (counter >= 2)
+  if (counter >= 1.95)
   {
-    modelMatrix.translate(-counter,transY,0.0);
-    counter = 0;
+    dir = -1;
   }
-  else
+  else if (counter <= 0.05)
   {
-    modelMatrix.translate(transX,transY,0.0);
-    counter += transX
+    dir = 1;
   }
+  counter += transX;
+  modelMatrix.translate(transX,transY,0.0);
+  console.log(dir);
   gl.uniformMatrix4fv(u_xformMatrix, false, modelMatrix.elements);
 
   // Clear <canvas>
