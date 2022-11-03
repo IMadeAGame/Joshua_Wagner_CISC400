@@ -1,0 +1,1 @@
+The FragColor in the fragment shader is taking the width and height of the canvas as well as the current x and y coordinates to create a gradient that increases the red value as x gets larger and increases the blue value as the y get larger.
