@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Multi-Pong</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="600" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+
+    <script src="../examples/lib/webgl-utils.js"></script>
+    <script src="../examples/lib/webgl-debug.js"></script>
+    <script src="../examples/lib/cuon-utils.js"></script>
+    <script src="../examples/lib/cuon-matrix.js"></script>
+    <script src="MultiPong.js"></script>
+    <p id="DisplayStats"></p>
+    <script>
+      var stats = "";
+      for (i = 0; i < 3; i++){
+        stats = stats.concat('0');
+        for (k = 0; k < 35; k++){
+          stats = stats.concat('&ensp;');   
+        }
+      }
+      document.getElementById("DisplayStats").innerHTML = stats
+    </script>
+
+  </body>
+</html>
