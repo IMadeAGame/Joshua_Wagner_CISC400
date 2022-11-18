@@ -123,7 +123,7 @@ document.onkeyup = (e) => {
 }
 
 function initVertexBuffers(gl) {
-  var verticesSizes = new Float32Array([
+  var vertices = new Float32Array([
     // Coordinate and size of points
      -0.9,  0.5, 1.0,  0.0,  1.0,  // the 1st paddle
      -0.9,  0.0, 1.0,  0.0,  1.0,
@@ -139,15 +139,42 @@ function initVertexBuffers(gl) {
      0.9,  0.5, 1.0,  1.0,  0.0,
      0.95, 0.0, 0.5,  1.0,  0.0,
 
-    -0.06,  0.1, 0.5,  0.5,  0.5,  // the ball spawner
-     0.06,  0.1, 0.5,  0.5,  0.5,
-    -0.06, -0.1, 0.5,  0.5,  0.5,
-    -0.06, -0.1, 0.5,  0.5,  0.5,
-     0.06, -0.1, 0.5,  0.5,  0.5,
-     0.06,  0.1, 0.5,  0.5,  0.5
-  ]); // CREATE INDIVIDUAL MOVEMENT
+    -0.06,  0.1, 0.25,  0.25,  0.25,  // the ball spawner
+     0.06,  0.1, 0.25,  0.25,  0.25,
+    -0.06, -0.1, 0.25,  0.25,  0.25,
+    -0.06, -0.1, 0.25,  0.25,  0.25,
+     0.06, -0.1, 0.25,  0.25,  0.25,
+     0.06,  0.1, 0.25,  0.25,  0.25
+  ]);
 
-  var n = 18; // The number of vertices
+  var circleVertices = new Float32Array(1800);
+
+  var n = 378; // The number of vertices
+
+  var len = 1800;
+  var radius = 0.05;
+
+  for(var i = 0; i < len; i+=5) {
+    rad = i * (Math.PI/180);
+    x = Math.sin(rad) * radius/1.5;
+    y = Math.cos(rad) * radius;
+    circleVertices[i] = x;
+    circleVertices[i + 1] = y;
+    circleVertices[i + 2] = 1.0;
+    circleVertices[i + 3] = 0.0;
+    circleVertices[i + 4] = 1.0;
+  }
+
+  var verticesSizes = new Float32Array(1890);
+
+  for(var i = 0; i < 1890; i++) {
+    if(i < 90){
+      verticesSizes[i] = vertices[i];
+    }
+    else{
+      verticesSizes[i] = circleVertices[i];
+    }
+  }
 
   // Create a buffer object
   var vertexSizeBuffer = gl.createBuffer();  
@@ -155,7 +182,7 @@ function initVertexBuffers(gl) {
     console.log('Failed to create the buffer object');
     return -1;
   }
-
+  console.log(verticesSizes);
   // Bind the buffer object to target
   gl.bindBuffer(gl.ARRAY_BUFFER, vertexSizeBuffer);
   gl.bufferData(gl.ARRAY_BUFFER, verticesSizes, gl.STATIC_DRAW);
@@ -213,5 +240,12 @@ function draw(gl, n, u_ModelMatrix, modelMatrix) {
   // Pass the view projection matrix
   gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
 
-  gl.drawArrays(gl.TRIANGLES, 12, 18); // Draw the ballspawner
+  gl.drawArrays(gl.TRIANGLES, 12, 6); // Draw the ballspawner
+
+  modelMatrix.setTranslate(0, 0, 0);
+
+  // Pass the view projection matrix
+  gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements);
+
+  gl.drawArrays(gl.TRIANGLE_FAN, 18, 360); // Draw the ball
 }
