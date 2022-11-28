@@ -3,9 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <title>Multi-Pong</title>
+    <script type = "text/javascript" src="MultiPong.js"></script>  
+    <style>
+      img {
+        padding-left: 150px;
+      }
+      body {
+        background-color: #1e2124;
+      }
+      </style>
   </head>
 
   <body onload="main()">
+    <img src="Logo.png" alt="Multi-Pong" width="255" height="75"> 
+    <br>
     <canvas id="webgl" width="600" height="400">
     Please use a browser that supports "canvas"
     </canvas>
@@ -15,17 +26,44 @@
     <script src="../examples/lib/cuon-utils.js"></script>
     <script src="../examples/lib/cuon-matrix.js"></script>
     <script src="MultiPong.js"></script>
-    <p id="DisplayStats"></p>
+    <p>
+    <span id="p1Score" style="font-size:25px; color: #AD00FF; font-family: 'Courier New', monospace;"></span>
+    <span id="time" style="font-size:25px; color: #ffffff; font-family: 'Courier New', monospace;"></span>
+    <span id="p2Score" style="font-size:25px; color: #00FF55; font-family: 'Courier New', monospace;"></span>
+    </p>
     <script>
       var stats = "";
-      for (i = 0; i < 3; i++){
-        stats = stats.concat('0');
-        for (k = 0; k < 35; k++){
-          stats = stats.concat('&ensp;');   
-        }
+      stats = stats.concat('0');
+      for (k = 0; k < 19; k++){
+        stats = stats.concat('&ensp;');   
       }
-      document.getElementById("DisplayStats").innerHTML = stats
-    </script>
+      document.getElementById("p1Score").innerHTML = stats;
 
+      stats = "";
+      stats = stats.concat('60');
+      for (k = 0; k < 19; k++){
+        stats = stats.concat('&ensp;');   
+      }
+      document.getElementById("time").innerHTML = stats;
+
+      stats = "";
+      stats = stats.concat('0');
+      for (k = 0; k < 19; k++){
+        stats = stats.concat('&ensp;');   
+      }
+      document.getElementById("p2Score").innerHTML = stats;
+    </script>
+    <button id="Start" onclick="onTimer()" style="font-size:30px; padding-left: 250px; padding-right: 250px; font-family: 'Courier New', monospace;">READY</button>
+
+    <script type="text/javascript">
+      var button = document.getElementById('Start')
+      button.addEventListener('click',hideshow,false);
+  
+      function hideshow() {
+          this.style.display = 'none'
+      }   
+    </script>
+    <p style="font-size:20px; color: #AD00FF; font-family: 'Courier New', monospace;">Purple Controls: W/S</p>
+    <p style="font-size:20px; color: #00FF55; font-family: 'Courier New', monospace;">Green Controls: Up/Down</p>
   </body>
 </html>
