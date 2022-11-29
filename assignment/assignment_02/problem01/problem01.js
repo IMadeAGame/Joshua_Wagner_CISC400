@@ -86,7 +86,7 @@ function initVertexBuffers(gl) {
     vertices[i] = x;
     vertices[i + 1] = y;
   }
-  var n = 720; // The number of vertices
+  var n = 360; // The number of vertices
 
   // Create a buffer object
   var vertexBuffer = gl.createBuffer();
