@@ -27,6 +27,7 @@ var ready = false;
 var timer = 60;
 var p1Points = 0;
 var p2Points = 0;
+var stats = "";
 
 function main() {
   window.addEventListener("keydown", function(e) {
@@ -77,6 +78,15 @@ function main() {
     animate();
     draw(gl, n, u_ModelMatrix, modelMatrix);   // Draw the triangle
     requestAnimationFrame(tick, canvas); // Request that the browser calls tick
+    stats = "";
+    stats = stats.concat(p1Points);
+    for (k = 0; k < 19; k++){
+      stats = stats.concat('&ensp;');   
+    }
+    document.getElementById("p1Score").innerHTML = stats;
+    stats = "";
+    stats = stats.concat(p2Points);
+    document.getElementById("p2Score").innerHTML = stats;
   };
   tick();
 }
@@ -247,26 +257,12 @@ function initVertexBuffers(gl) {
 }
 
 function onTimer() {
-  var stats = "";
-  stats = stats.concat(p1Points);
-  for (k = 0; k < 19; k++){
-    stats = stats.concat('&ensp;');   
-  }
-  document.getElementById("p1Score").innerHTML = stats;
-
   stats = "";
   stats = stats.concat(timer);
   for (k = 0; k < 19; k++){
     stats = stats.concat('&ensp;');   
   }
   document.getElementById("time").innerHTML = stats;
-
-  stats = "";
-  stats = stats.concat(p2Points);
-  for (k = 0; k < 19; k++){
-    stats = stats.concat('&ensp;');   
-  }
-  document.getElementById("p2Score").innerHTML = stats;
   timer--;
   if (timer < 0) {
     ready = false;
